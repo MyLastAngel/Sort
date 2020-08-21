@@ -10,9 +10,8 @@ namespace Sort
 
         static void Main(string[] args)
         {
-            var count = 10000;
-
-            // Создаем 10к случайных точек
+            // Создаем count случайных точек
+            var count = 100000;
             var arr = CreateRandom(count);
 
             Call("MergeSort", arr, (aArray) =>
@@ -20,14 +19,9 @@ namespace Sort
                 return aArray.MergeSort();
             });
 
-            Call("MergeSort v2", arr, (aArray) =>
+            Call("HeapSort ", arr, (aArray) =>
             {
-                return aArray.MergeSort_v2();
-            });
-
-            Call("BubbleSort", arr, (aArray) =>
-            {
-                aArray.BubbleSort();
+                aArray.HeapSort();
                 return aArray;
             });
 
@@ -36,6 +30,19 @@ namespace Sort
                 Array.Sort(aArray);
                 return aArray;
             });
+
+            Console.WriteLine($"Нажмите `y` для запуска пузырьковой сортировки (Очень долго): ");
+            var key = Console.ReadKey();
+            if (key.KeyChar == 'y')
+            {
+                Call("BubbleSort", arr, (aArray) =>
+                {
+                    aArray.BubbleSort();
+                    return aArray;
+                });
+            }
+            else
+                Console.WriteLine($"Правильный выбор ;)");
 
             Console.WriteLine($"Any key to exit...");
             Console.ReadKey();
@@ -51,7 +58,7 @@ namespace Sort
 
             t.Stop();
 
-            Console.WriteLine($"[{sAlgorithm}] - Отсортировали '{arr.Length}' элементов за: {t.Elapsed}");
+            Console.WriteLine($"{t.Elapsed.TotalMilliseconds} - [{sAlgorithm}] - Отсортировали '{arr.Length}' элементов");
 
             Check(result);
         }
