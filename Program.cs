@@ -10,9 +10,26 @@ namespace Sort
 
         static void Main(string[] args)
         {
+
+
             // Создаем count случайных точек
             var count = 100000;
             var arr = CreateRandom(count);
+
+            //arr = new[] { 9, 5, 1, 4, 19, 3, 7, 11, 4, 3, 3, 3, 36, 11 };
+
+            //Call("QuickSort ", arr, (aArray) =>
+            //{
+            //    aArray.QuickSort();
+            //    return aArray;
+            //});
+
+            //Call("Array.Sort (QuickSort)", arr, (aArray) =>
+            //{
+            //    Array.Sort(aArray);
+            //    return aArray;
+            //});
+
 
             Call("MergeSort", arr, (aArray) =>
             {
@@ -24,6 +41,13 @@ namespace Sort
                 aArray.HeapSort();
                 return aArray;
             });
+
+            Call("QuickSort ", arr, (aArray) =>
+            {
+                aArray.QuickSort();
+                return aArray;
+            });
+
 
             Call("Array.Sort (QuickSort)", arr, (aArray) =>
             {
